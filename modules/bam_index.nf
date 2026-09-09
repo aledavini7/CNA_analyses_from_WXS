@@ -4,10 +4,10 @@ process INDEX_BAM_PAIR {
     publishDir "${params.outdir}/indexed_bams", mode: 'copy', pattern: '*.bam.bai'
 
     input:
-    tuple val(sample_id), path(tumor_bam), path(normal_bam)
+    tuple val(sample_id), val(tumor_name), path(tumor_bam), val(normal_name), path(normal_bam)
 
     output:
-    tuple val(sample_id), path("*.bam", includeInputs: true), path("*.bam.bai"), emit: indexed_pairs
+    tuple val(sample_id), val(tumor_name), val(normal_name), path("*.bam", includeInputs: true), path("*.bam.bai"), emit: indexed_pairs
 
     script:
     """
