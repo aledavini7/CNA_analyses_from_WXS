@@ -7,7 +7,7 @@ process BAM_QC {
     tuple val(sample_id), path(bam), path(bai)
 
     output:
-    tuple val(sample_id), path("*.bam", includeInputs: true), path("*.bam.bai", includeInputs: true), path("*.flagstat.txt"), path("*.idxstats.txt"), path("*.quickcheck.txt"), emit: qc_bams
+    tuple val(sample_id), path("*.bam", includeInputs: true), path("*.bam.bai", includeInputs: true), path("*.flagstat.txt"), path("*.idxstats.txt"), path("*.quickcheck.txt"), emit: qc_reports
 
     script:
     """
