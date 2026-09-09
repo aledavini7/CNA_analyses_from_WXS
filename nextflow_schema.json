@@ -19,7 +19,7 @@
     },
     "samtools_container": {
       "type": "string",
-      "default": "quay.io/biocontainers/samtools:1.20--h50ea8bc_1",
+      "default": "docker://quay.io/biocontainers/samtools:1.20--h50ea8bc_1",
       "description": "Container image used for BAM indexing.",
       "hidden": true
     }
