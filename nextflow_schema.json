@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CNA analyses from WXS parameters",
+  "type": "object",
+  "definitions": {
+    "file_path": {
+      "type": "string",
+      "format": "file-path"
+    }
+  },
+  "properties": {
+    "bam_dir": {
+      "type": "string",
+      "format": "directory-path",
+      "description": "Directory containing BAM files, searched recursively.",
+      "help_text": "Example: /beegfs/scratch/ieo5898/phs000450_chapuy/bams"
+    },
+    "bam_pattern": {
+      "type": "string",
+      "default": "**/*.bam",
+      "description": "Glob pattern used to discover BAM files below bam_dir."
+    },
+    "fasta": {
+      "$ref": "#/definitions/file_path",
+      "description": "Reference FASTA compatible with the BAM files."
+    },
+    "fasta_fai": {
+      "$ref": "#/definitions/file_path",
+      "description": "FASTA index (.fai)."
+    },
+    "fasta_dict": {
+      "$ref": "#/definitions/file_path",
+      "description": "Reference sequence dictionary (.dict)."
+    },
+    "outdir": {
+      "type": "string",
+      "default": "results",
+      "description": "Output directory."
+    }
+  },
+  "required": ["bam_dir", "fasta", "fasta_fai", "fasta_dict"]
+}

@@ -1,0 +1,41 @@
+# Local/example sequencing data
+example_bam/
+*.bam
+*.bai
+*.crai
+*.fastq
+*.fastq.gz
+*.fq
+*.fq.gz
+
+# Nextflow runtime files
+work/
+.nextflow/
+.nextflow.log*
+nextflow.log*
+
+# Pipeline outputs and reports
+results/
+output/
+reports/
+*.html
+*.json
+!nextflow_schema.json
+*.vcf
+*.vcf.gz
+*.tsv
+*.csv
+
+# Local references and indexes
+references/
+*.fasta
+*.fasta.gz
+*.fa
+*.fa.gz
+*.fai
+*.dict
+
+# OS/editor files
+.DS_Store
+*.swp
+*.swo

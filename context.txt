@@ -1,0 +1,20 @@
+AIM of the project and context: The aim of this project is to generate a nextflow repository that run on Seqera platform and we'll load on GitHub. The repository aims to start from WXS derived bam files (obtained from dbGaP access code: phs000450. This is the related paper: PMCID: PMC6613387 DOI: 10.1038/s41591-018-0016-8) and analyse the copy number alterations of patients, with a particular focus on deletion in arm 6q. In particular, in the paper it is stated that 60 patients carry a full deletion of the arm, but I need to check on these was files if RPS12 gene is actually always included in this deletion. Use nf-core/sarek as an example of what we want, but really simplified. Maybe we can include variant call, annotation and CNV. Please create also with docker some containers that we'll add to the github of the repo and can be used as singularity images.
+This is an example of a pipeline that works in my hpc cluster and use it to take inspiration for the structure and to copy the information regarding the config/schema we'll need for our repo: https://github.com/aledavini7/clam-mitogenome-pipeline.git.
+I've also included a bam file as reference but we don't need to run the pipeline in this local machine. Just use them to tailor the design of the pipeline, but I'll test it on the cluster.
+
+Steps I need you to perform.
+
+1. Check the bam file and give me an overview of the project.
+2. Write the repo and build the packages/containers we need.
+3. Add the nextflow schema so that I can load it on seqera.
+4. Focus on CNA (but keeping also variant calling as one of the steps). I want the pipeline to be simple and straightforward.
+
+Execution:
+Please follow these rules.
+
+- Give me concise answers.
+- Ask for permissions.
+- Always perform one step at a time, so that we can design every step together.
+- Every time I need to commit on GitHub just give me the command with add, commit, push and I'll do it myself.
+
+
