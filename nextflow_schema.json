@@ -1,19 +1,16 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "https://raw.githubusercontent.com/aledavini7/CNA_analyses_from_WXS/main/nextflow_schema.json",
   "title": "CNA analyses from WXS parameters",
+  "description": "Schema for launching the WXS CNA analysis pipeline from Seqera.",
   "type": "object",
-  "definitions": {
-    "file_path": {
-      "type": "string",
-      "format": "file-path"
-    }
-  },
   "properties": {
     "bam_dir": {
       "type": "string",
+      "format": "file-path",
       "x-label": "BAM directory",
       "description": "Directory containing sample folders with BAM files. All BAMs are discovered recursively.",
-      "help_text": "Example: /beegfs/scratch/ieo5898/phs000450_chapuy/bams"
+      "fa_icon": "fas fa-folder-open"
     },
     "outdir": {
       "type": "string",
