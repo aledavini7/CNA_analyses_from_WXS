@@ -1,13 +1,13 @@
 process INDEX_BAM {
-    tag "${bam.simpleName}"
+    tag "${sample_id}"
     container params.samtools_container
-    publishDir "${params.outdir}/indexed_bams", mode: 'copy', pattern: '*.bam*'
+    publishDir "${params.outdir}/indexed_bams", mode: 'copy', pattern: '*.bam.bai'
 
     input:
-    path bam
+    tuple val(sample_id), path(bam)
 
     output:
-    tuple path("*.bam", includeInputs: true), path("*.bam.bai"), emit: indexed_bams
+    tuple val(sample_id), path("*.bam", includeInputs: true), path("*.bam.bai"), emit: indexed_bams
 
     script:
     """

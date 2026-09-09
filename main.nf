@@ -13,6 +13,7 @@ workflow {
     }
 
     bam_ch = Channel.fromPath("${params.bam_dir}/**/*.bam", checkIfExists: true)
+        .map { bam -> tuple(bam.baseName, bam) }
 
     INDEX_BAM(bam_ch)
 }
