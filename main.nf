@@ -5,7 +5,7 @@
 
 nextflow.enable.dsl=2
 
-include { INDEX_BAM_PAIR } from './modules/bam_index'
+include { INDEX_BAM_PAIR; INDEX_BAM_TUMOR_ONLY } from './modules/bam_index'
 include { CNVKIT_BATCH } from './modules/cnvkit_batch'
 include { CNVKIT_TUMOR_ONLY } from './modules/cnvkit_tumor_only'
 include { BAM_QC } from './modules/bam_qc'
