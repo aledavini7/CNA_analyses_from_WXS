@@ -11,7 +11,7 @@
   "properties": {
     "bam_dir": {
       "type": "string",
-      "format": "directory-path",
+      "x-label": "BAM directory",
       "description": "Directory containing sample folders with BAM files. All BAMs are discovered recursively.",
       "help_text": "Example: /beegfs/scratch/ieo5898/phs000450_chapuy/bams"
     },
