@@ -7,7 +7,7 @@ process INDEX_BAM {
     path bam
 
     output:
-    tuple path("*.bam"), path("*.bam.bai"), emit: indexed_bams
+    tuple path("*.bam", includeInputs: true), path("*.bam.bai"), emit: indexed_bams
 
     script:
     """
