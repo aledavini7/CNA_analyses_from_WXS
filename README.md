@@ -6,6 +6,8 @@ the `RPS12` gene.
 
 The workflow is designed for configurable local, HPC, and Seqera execution.
 References and sequencing data remain external to the repository.
+The BAM indexing process runs in a Samtools container and is configured for
+Apptainer/Singularity on HPC systems.
 
 ## BAM indexing test
 

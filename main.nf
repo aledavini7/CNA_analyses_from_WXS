@@ -14,9 +14,5 @@ workflow {
 
     bam_ch = Channel.fromPath("${params.bam_dir}/**/*.bam", checkIfExists: true)
 
-    if (bam_ch.empty) {
-        error "No BAM files found recursively under ${params.bam_dir}"
-    }
-
     INDEX_BAM(bam_ch)
 }
