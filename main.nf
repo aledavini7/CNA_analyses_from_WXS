@@ -6,6 +6,7 @@
 nextflow.enable.dsl=2
 
 include { INDEX_BAM } from './modules/bam_index'
+include { BAM_QC } from './modules/bam_qc'
 
 workflow {
     if (!params.bam_dir) {
@@ -16,4 +17,5 @@ workflow {
         .map { bam -> tuple(bam.baseName, bam) }
 
     INDEX_BAM(bam_ch)
+    BAM_QC(INDEX_BAM.out.indexed_bams)
 }
