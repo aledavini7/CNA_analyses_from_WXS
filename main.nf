@@ -5,23 +5,18 @@
 
 nextflow.enable.dsl=2
 
+include { INDEX_BAM } from './modules/bam_index'
+
 workflow {
     if (!params.bam_dir) {
         error "Missing required parameter: --bam_dir"
     }
-    if (!params.fasta) {
-        error "Missing required parameter: --fasta"
-    }
 
-    bam_ch = Channel.fromPath(
-        "${params.bam_dir}/${params.bam_pattern}",
-        checkIfExists: true
-    )
+    bam_ch = Channel.fromPath("${params.bam_dir}/**/*.bam", checkIfExists: true)
 
     if (bam_ch.empty) {
-        error "No BAM files found under ${params.bam_dir} with pattern ${params.bam_pattern}"
+        error "No BAM files found recursively under ${params.bam_dir}"
     }
 
-    // Processes will be connected here after the input contract is finalized.
-    bam_ch.view { "Input BAM: ${it}" }
+    INDEX_BAM(bam_ch)
 }

@@ -7,16 +7,22 @@ the `RPS12` gene.
 The workflow is designed for configurable local, HPC, and Seqera execution.
 References and sequencing data remain external to the repository.
 
-## Initial input parameters
+## BAM indexing test
 
 ```bash
 nextflow run main.nf \
   --bam_dir /path/to/bams \
-  --fasta /path/to/Homo_sapiens_assembly19.fasta \
-  --fasta_fai /path/to/Homo_sapiens_assembly19.fasta.fai \
-  --fasta_dict /path/to/Homo_sapiens_assembly19.dict \
   --outdir results
 ```
 
-The BAM directory is searched recursively using `--bam_pattern`, which defaults
-to `**/*.bam`.
+To test a small subset on the cluster, provide a directory containing only the
+sample folders you want to process:
+
+```bash
+nextflow run main.nf \
+  --bam_dir /beegfs/scratch/ieo5898/phs000450_chapuy/test_bams \
+  --outdir /beegfs/scratch/ieo5898/phs000450_chapuy/results/index_test
+```
+
+All `*.bam` files below `bam_dir` are discovered recursively. The directory
+can point to any future data location.
