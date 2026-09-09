@@ -5,17 +5,14 @@
 
 nextflow.enable.dsl=2
 
-include { INDEX_BAM } from './modules/bam_index'
-include { BAM_QC } from './modules/bam_qc'
+include { INDEX_BAM_PAIR } from './modules/bam_index'
+include { CNVKIT_BATCH } from './modules/cnvkit_batch'
 
 workflow {
-    if (!params.bam_dir) {
-        error "Missing required parameter: --bam_dir"
-    }
+    if (!params.samplesheet || !params.fasta || !params.targets_bed) error "Required: --samplesheet, --fasta, --targets_bed"
 
-    bam_ch = Channel.fromPath("${params.bam_dir}/**/*.bam", checkIfExists: true)
-        .map { bam -> tuple(bam.baseName, bam) }
-
-    INDEX_BAM(bam_ch)
-    BAM_QC(INDEX_BAM.out.indexed_bams)
+    samples_ch = Channel.fromPath(params.samplesheet, checkIfExists: true).splitCsv(header: true, sep: '\t').map { r -> tuple(r.sample_id, file(r.tumor_bam), file(r.normal_bam)) }
+    indexed = INDEX_BAM_PAIR(samples_ch)
+    pairs = indexed.indexed_pairs.map { sid, bams, idxs -> tuple(sid, bams[0], bams[1], file(params.fasta), file(params.targets_bed)) }
+    CNVKIT_BATCH(pairs)
 }

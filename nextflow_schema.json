@@ -5,12 +5,16 @@
   "description": "Schema for launching the WXS CNA analysis pipeline from Seqera.",
   "type": "object",
   "properties": {
-    "bam_dir": {
+    "samplesheet": {
       "type": "string",
       "format": "file-path",
-      "x-label": "BAM directory",
-      "description": "Directory containing sample folders with BAM files. All BAMs are discovered recursively.",
-      "fa_icon": "fas fa-folder-open"
+      "x-label": "Samplesheet",
+      "description": "Tab-separated manifest with sample_id, tumor_bam, normal_bam, and pairing_status.",
+      "fa_icon": "fas fa-file-import"
+    },
+    "fasta": {"type":"string","format":"file-path","description":"b37 reference FASTA."},
+    "targets_bed": {"type":"string","format":"file-path","description":"SureSelect v2 b37 target BED."},
+    "cnvkit_container": {"type":"string","default":"docker://etal/cnvkit:0.9.11","hidden":true
     },
     "outdir": {
       "type": "string",
@@ -24,5 +28,5 @@
       "hidden": true
     }
   },
-  "required": ["bam_dir"]
+  "required": ["samplesheet", "fasta", "targets_bed"]
 }
